@@ -5,50 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mark Chatbot</title>
     <style>
-        .chat-toggle {
+        #chat-container {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: #4A90E2;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            cursor: pointer;
-            z-index: 1001;
-            font-size: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.15);
-        }
-        #chat-container {
-            display: none;
-            position: fixed;
-            bottom: 100px;
-            right: 20px;
-            width: min(400px, 90vw);
-            height: min(600px, 80vh);
-            z-index: 1000;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            background: white;
-            overflow: hidden;
         }
     </style>
 </head>
 <body>
-    <button class="chat-toggle" onclick="toggleChat()">💬</button>
     <div id="chat-container"></div>
     
     <script src="https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-app-sdk/1.1.0-beta.0/libs/oversea/index.js"></script>
     <script>
-        function toggleChat() {
-            const container = document.getElementById('chat-container');
-            container.style.display = container.style.display === 'none' ? 'block' : 'none';
-        }
-
         new CozeWebSDK.WebChatClient({
             config: {
                 bot_id: '7461294733529563141'
