@@ -9,21 +9,54 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
+            width: 100%;
+            max-width: 400px;
+            height: 500px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            font-family: "Arial", sans-serif;
+        }
+        @media (max-width: 768px) {
+            #chat-container {
+                bottom: 10px;
+                right: 10px;
+                width: 90%;
+                height: 400px;
+            }
+        }
+        #loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 16px;
+            color: #666;
         }
     </style>
 </head>
 <body>
-    <div id="chat-container"></div>
+    <div id="chat-container">
+        <div id="loading">Loading Chatbot...</div>
+    </div>
     
     <script src="https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-app-sdk/1.1.0-beta.0/libs/oversea/index.js"></script>
     <script>
+        const chatContainer = document.getElementById('chat-container');
+        const loadingIndicator = document.getElementById('loading');
+
         new CozeWebSDK.WebChatClient({
             config: {
                 bot_id: '7461294733529563141'
             },
             componentProps: {
                 title: 'Mark',
-                el: document.getElementById('chat-container')
+                el: chatContainer
+            },
+            onSocketEvent: {
+                connect: () => {
+                    loadingIndicator.style.display = 'none';
+                }
             }
         });
     </script>
